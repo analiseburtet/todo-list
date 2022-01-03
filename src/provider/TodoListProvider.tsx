@@ -1,5 +1,6 @@
 import {createContext, FC, useContext, useState} from "react";
 import {Task} from "../components/types";
+import useCookies from "../hooks/useCookies";
 
 type TodoListContextProps = {
     list: Task[]
@@ -11,7 +12,7 @@ type TodoListContextProps = {
 export const TodoListContext = createContext({} as TodoListContextProps);
 
 const TodoListProvider:FC = ({children}) => {
-    const [list,setList] = useState<Task[]>([])
+    const [list,setList] = useCookies<Task[]>([], '@TODO_LIST')
 
     const addTask = (text:string) => {
         setList([...list, {text, id: Math.random(), done: false}])
