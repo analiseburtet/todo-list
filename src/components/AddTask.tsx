@@ -1,10 +1,12 @@
-import {Button, TextField} from "@mui/material";
-import {useTodoList} from "../hooks/useTodoList";
-import {useState} from "react";
+import { Button, Card, TextField } from "@mui/material";
+import { useTodoList } from "../hooks/useTodoList";
+import { useState } from "react";
+import styles from "../pages/styles";
 
 export const AddTask = () => {
-    const [value, setValue] = useState('');
-    const {addTask} = useTodoList()
+    const [value, setValue] = useState('')
+    const { addTask } = useTodoList()
+    const classes = styles();
 
     const handleClick = () => {
         addTask(value)
@@ -14,16 +16,24 @@ export const AddTask = () => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)
 
     return(
-        <>
-            <TextField
-                id="outlined-basic"
-                label="To do"
-                variant="outlined"
-                value={value}
-                onChange={handleChange}
-            />
-            <Button variant="outlined" onClick={handleClick}>Add</Button>
-        </>
+        <div className={classes.cardContainer}>
+            <Card className={classes.card}>
+                <TextField
+                    id="insert task"
+                    label="To do"
+                    variant="standard"
+                    value={value}
+                    onChange={handleChange}
+                />
+                <Button
+                    className={classes.addButton}
+                    variant="outlined"
+                    onClick={handleClick}
+                >
+                    Add
+                </Button>
+            </Card>
+        </div>
     )
 }
 

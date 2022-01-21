@@ -1,6 +1,7 @@
 import { Typography } from "@mui/material"
 import TaskCard from "./TaskCard"
 import { Task } from "./types"
+import styles from "../pages/styles";
 
 type ListCardsProps = {
     title: string,
@@ -8,12 +9,16 @@ type ListCardsProps = {
 }
 
 const ListCards = ({ title, tasks }: ListCardsProps) => {
+    const classes = styles();
+
     return (
         <>
-            <Typography>{title}</Typography>
-            {tasks.map((task, index) => (
-                <TaskCard task={task} key={index} />
-            ))}
+            <Typography className={classes.title}>{title}</Typography>
+            <div className={classes.alignCards}>
+                {tasks.map((task, index) => (
+                    <TaskCard task={task} key={index} />
+                ))}
+            </div>
         </>
     )
 }

@@ -1,19 +1,15 @@
 import React from 'react'
-import { CardHeader, IconButton } from "@mui/material";
-import { LibraryBooks } from "@mui/icons-material";
+import { CardHeader } from "@mui/material";
+import styles from "../pages/styles";
 
 export const Header = () => {
+    const classes = styles();
+
     return (
-        <>
         <CardHeader
-            action={
-                <IconButton aria-label="settings">
-                    <LibraryBooks />
-                </IconButton>
-            }
-            title="To do"
+            className={classes.header}
+            title="To do list"
         />
-        </>
     )
 }
 
